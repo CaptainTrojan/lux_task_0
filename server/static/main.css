@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    text-align: center;
+}
+
+#flats {
+    max-width: 800px;
+    display: inline-block;
+}
+
+.flat {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.flat-title {
+    flex-grow: 1;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.flat-img {
+    max-height: 140px;
+    display: inline-block;
+}
+
+.pagination-container {
+    margin-top: 20px;
+}
+
+.paginationjs-pages {
+    display: inline-block;
+    float: none !important;
+}
