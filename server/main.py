@@ -24,15 +24,18 @@ async def get_index():
 
 @app.get("/api/flats")
 def get_tuples():
+    # Collect all items from the database...
     with conn.cursor() as cursor:
         select_query = "SELECT title, image_url FROM flats_sell"
         cursor.execute(select_query)
         tuples = cursor.fetchall()
 
+    # ... and return them to the user.
     result = []
     for tuple_item in tuples:
         result.append({"title": tuple_item[0], "image_url": tuple_item[1]})
 
+    # 'size' for debugging purposes.
     return {'size': len(result), 'result': result}
 
 

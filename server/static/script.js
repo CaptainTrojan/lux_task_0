@@ -1,3 +1,8 @@
+/**
+ * Creates an HTML "item" from data (given some pagination).
+ * @param data flat data {'title': str, 'image_url': str}
+ * @returns {string}
+ */
 function template(data){
     let html = "<div id='flats'>";
     $.each(data, function(index, item){
@@ -13,6 +18,8 @@ window.onload = function () {
     fetch('/api/flats')
         .then(response => response.json())
         .then(data => {
+            // Creates paginated results from the flats-sell data we have
+            // collected in our postgresql database
             $('#pagination-container').pagination({
                 dataSource: data,
                 pageSize: 10,

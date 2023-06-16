@@ -19,13 +19,20 @@ class SRealitySpider(scrapy.Spider):
         )
 
     def start_requests(self):
+        # Make a request to Seznam's API :)
+        # Simpler than parsing a page that is dynamically loaded. This is the recommended
+        # approach according to scrapy docs.
         yield scrapy.Request(url=self.url_base, callback=self.parse_flats)
 
     def parse_flats(self, response: scrapy.http.response.Response):
         data = json.loads(response.text)
+
+        # List of all flats (we directly ask for 500 of them)
         estates = data['_embedded']['estates']
 
         with self.conn.cursor() as cursor:
+            # Clear table
+            # (in case the database was already filled by previous `docker compose up` call)
             cursor.execute("TRUNCATE TABLE flats_sell")
 
             for estate in estates:
